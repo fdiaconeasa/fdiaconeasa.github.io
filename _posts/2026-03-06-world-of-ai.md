@@ -19,6 +19,6 @@ categories: ai software SDLC
 
 ## Tools
 
-- llmfit - easy to use tool in order to select the models that are best fit for the computer at your disposal, for running locally
+- [llmfit](https://github.com/AlexsJones/llmfit) - easy to use tool in order to select the models that are best fit for the computer at your disposal, for running locally
 - openspec - just spec it, don't write the code anymore
 - tessl - under review manager for skills
