@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Types of Forex"
+title: "Types of Forex Instruments"
 date: 2026-06-02
 categories:
 ---
