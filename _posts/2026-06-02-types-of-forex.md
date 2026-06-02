@@ -5,7 +5,7 @@ date: 2026-06-02
 categories:
 ---
 
-### Result in actual currency transfers
+## Result in actual currency transfers
  
 | Type | How it works | Use cases | Example |
 |------|-------------|-----------|---------|
@@ -14,7 +14,7 @@ categories:
 | **Futures** | Like forwards but standardized, exchange-traded | Hedging with exchange transparency, speculation | Hedge fund buys GBP futures on CME — full transfer if held to expiry |
 | **Physical** | Actual banknote exchange at a bureau or bank | Travel, cash remittances, small businesses | Tourist exchanges CHF for JPY at airport kiosk |
  
-### Do not result in actual currency transfers
+## Do not result in actual currency transfers
  
 | Type | How it works | Use cases | Example |
 |------|-------------|-----------|---------|
