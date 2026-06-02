@@ -1,0 +1,66 @@
+name: Publish Post
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: Post title
+        required: true
+        type: string
+      content:
+        description: Post body (markdown)
+        required: true
+        type: string
+      categories:
+        description: Space-separated categories (optional)
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create post file
+        env:
+          TITLE: ${{ inputs.title }}
+          CONTENT: ${{ inputs.content }}
+          CATEGORIES: ${{ inputs.categories }}
+        run: |
+          python3 - <<'EOF'
+          import os, re
+          from datetime import date
+
+          title = os.environ["TITLE"]
+          content = os.environ["CONTENT"]
+          categories = os.environ.get("CATEGORIES", "")
+
+          today = date.today().isoformat()
+          slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+          filename = f"_posts/{today}-{slug}.md"
+
+          safe_title = title.replace('"', '\\"')
+          front_matter = f'---\nlayout: post\ntitle: "{safe_title}"\ndate: {today}\ncategories: {categories}\n---\n\n'
+
+          with open(filename, "w") as f:
+              f.write(front_matter + content + "\n")
+
+          print(f"Created: {filename}")
+          EOF
+
+      - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: ${{ inputs.title }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git add _posts/
+          git commit -m "Add post: ${TITLE}"
+          git push
