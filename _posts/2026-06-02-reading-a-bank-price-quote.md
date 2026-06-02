@@ -6,7 +6,7 @@ categories:
 ---
 
 When a bank provides a forward rate quote, the price is typically built from three layers:
- 
+
 ```
 Forward rate = Spot rate + Swap points + Mark-up
 ```
