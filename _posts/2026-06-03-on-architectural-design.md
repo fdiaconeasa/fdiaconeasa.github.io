@@ -6,3 +6,4 @@ categories:
 ---
 
 - [Self Contained Systems](https://scs-architecture.org/)
+- [Chronicle Queue](https://github.com/OpenHFT/Chronicle-Queue)
